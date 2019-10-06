@@ -7,13 +7,14 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.List;
 
 @Entity
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Class {
+public class Course {
     @Id
     private String id;
 
