@@ -8,27 +8,27 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/home")
+@RequestMapping("/home/courses")
 public class CourseController {
     @Autowired
     private CourseService courseService;
 
-    @GetMapping("/courses")
+    @GetMapping("")
     private Iterable<Course> getAllCourses(){
         return courseService.getCourses();
     }
 
-    @GetMapping("/courses/{id}")
-    private Optional<Course> getCourses(@PathVariable String id){
+    @GetMapping("/{id}")
+    private Optional<Course> getCourse(@PathVariable String id){
         return courseService.getCourse(id);
     }
 
-    @PostMapping("/courses")
+    @PostMapping("")
     private void addCourse(@RequestBody Course course){
         courseService.addCourse(course);
     }
 
-    @DeleteMapping("/courses/{id}")
+    @DeleteMapping("/{id}")
     private void deleteCourse(@PathVariable String id){
         courseService.deleteCourse(id);
     }
