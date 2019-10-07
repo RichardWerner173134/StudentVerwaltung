@@ -1,5 +1,6 @@
 package com.example.testDatabase.demotest.Controller;
 
+import com.example.testDatabase.demotest.Entities.Course;
 import com.example.testDatabase.demotest.Entities.Student;
 import com.example.testDatabase.demotest.Services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,10 @@ public class StudentController {
     @DeleteMapping("/{studentId}/courses/{courseId}")
     private void deleteCourseFromStudent(@PathVariable String studentId, @PathVariable String courseId){
         studentService.deleteCourseFromStudent(studentId, courseId);
+    }
+
+    @GetMapping("/{studentId}/courses")
+    private Iterable<Course> getCoursesForStudent(@PathVariable String studentId){
+        return studentService.getCoursesForStudent(studentId);
     }
 }

@@ -41,7 +41,11 @@ public class StudentService {
 
     public void deleteCourseFromStudent(String studentId, String courseId){
         Optional<Student> student = studentRepository.findById(studentId);
-        student.get().getLikedCourses().remove(courseRepository.findById(courseId).get());
+        student.get().removeLikedCourses(courseRepository.findById(courseId).get());
         studentRepository.save(student.get());
+    }
+
+    public Iterable<Course> getCoursesForStudent(String studentId){
+        return studentRepository.findById(studentId).get().getLikedCourses();
     }
 }
