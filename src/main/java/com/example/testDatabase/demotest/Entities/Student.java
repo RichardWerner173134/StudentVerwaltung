@@ -5,9 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.util.List;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Setter
@@ -19,4 +18,11 @@ public class Student {
     private String id;
 
     private String name;
+
+    @ManyToMany
+    @JoinTable(
+            name = "course_like",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id"))
+    private Set<Course> likedCourses;
 }
