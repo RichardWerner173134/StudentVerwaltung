@@ -21,7 +21,7 @@ public class Course {
 
     private String name;
 
-    @ManyToMany(mappedBy = "likedCourses")
+    @ManyToMany(mappedBy = "attendedCourses")
     @JsonIgnore
-    private Set<Student> likes;
+    private Set<Student> attendees;
 }

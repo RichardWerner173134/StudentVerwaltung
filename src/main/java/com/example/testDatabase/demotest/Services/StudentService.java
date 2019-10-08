@@ -34,18 +34,22 @@ public class StudentService {
     }
 
     public void addCourseToStudent(String studentId, String courseId){
-        Student student = studentRepository.findById(studentId).get();
-        student.addLikedCourses(courseRepository.findById(courseId).get());
-        studentRepository.save(student);
+        Optional<Student> student = studentRepository.findById(studentId);
+        if(student.isPresent()) {
+            student.get().addLikedCourses(courseRepository.findById(courseId).get());
+            studentRepository.save(student.get());
+        }
     }
 
-    public void deleteCourseFromStudent(String studentId, String courseId){
+    public void deleteCourseFromStudent(String studentId, String courseId) {
         Optional<Student> student = studentRepository.findById(studentId);
-        student.get().removeLikedCourses(courseRepository.findById(courseId).get());
-        studentRepository.save(student.get());
+        if (student.isPresent()) {
+            student.get().removeLikedCourses(courseRepository.findById(courseId).get());
+            studentRepository.save(student.get());
+        }
     }
 
     public Iterable<Course> getCoursesForStudent(String studentId){
-        return studentRepository.findById(studentId).get().getLikedCourses();
+        return studentRepository.findById(studentId).get().getAttendedCourses();
     }
 }
