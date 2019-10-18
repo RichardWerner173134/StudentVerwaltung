@@ -4,12 +4,17 @@ import com.example.testDatabase.demotest.Entities.Course;
 import com.example.testDatabase.demotest.Entities.Student;
 import com.example.testDatabase.demotest.Repositories.CourseRepository;
 import com.example.testDatabase.demotest.Repositories.StudentRepository;
+import lombok.Builder;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
+@Getter
 @Service
+@Builder
 public class CourseService {
 
     @Autowired
@@ -18,7 +23,7 @@ public class CourseService {
     @Autowired
     private StudentRepository studentRepository;
 
-    public Iterable<Course> getCourses(){
+    public List<Course> getCourses(){
         return courseRepository.findAll();
     }
 
@@ -41,4 +46,5 @@ public class CourseService {
         }
         throw new Exception("CourseId not found");
     }
+
 }
