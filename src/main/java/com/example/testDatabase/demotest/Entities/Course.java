@@ -23,6 +23,7 @@ public class Course {
 
     private String name;
 
+    @Transient
     @Autowired
     private CourseEnricher ce;
 

@@ -5,6 +5,8 @@ import com.example.testDatabase.demotest.Services.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/home/subjects")
 public class SubjectController {
@@ -12,7 +14,7 @@ public class SubjectController {
     private SubjectService subjectService;
 
     @GetMapping("")
-    private Iterable<Subject> getSubjects(){
+    private List<Subject> getSubjects(){
         return subjectService.getAllSubjects();
     }
 

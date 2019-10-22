@@ -18,6 +18,7 @@ public class Subject {
     @GeneratedValue
     private String id;
 
+    @Transient
     @Autowired
     private SubjectEnricher subjectEnricher = SubjectEnricher.builder().build();
 

@@ -9,6 +9,7 @@ import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,10 +40,10 @@ public class CourseService {
         return courseRepository.findById(id);
     }
 
-    public Iterable<Student> getCourseMembers(String id) throws Exception {
+    public List<Student> getCourseMembers(String id) throws Exception {
         Optional<Course> course = courseRepository.findById(id);
         if(course.isPresent()){
-            return course.get().getAttendees();
+            return new ArrayList<>(course.get().getAttendees());
         }
         throw new Exception("CourseId not found");
     }

@@ -7,6 +7,8 @@ import com.example.testDatabase.demotest.Repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -25,7 +27,7 @@ public class StudentService {
         studentRepository.save(student);
     }
 
-    public Iterable<Student> getAllStudents(){
+    public List<Student> getAllStudents(){
         return studentRepository.findAll();
     }
 
@@ -49,7 +51,7 @@ public class StudentService {
         }
     }
 
-    public Iterable<Course> getCoursesForStudent(String studentId){
-        return studentRepository.findById(studentId).get().getAttendedCourses();
+    public List<Course> getCoursesForStudent(String studentId){
+        return new ArrayList<>(studentRepository.findById(studentId).get().getAttendedCourses());
     }
 }

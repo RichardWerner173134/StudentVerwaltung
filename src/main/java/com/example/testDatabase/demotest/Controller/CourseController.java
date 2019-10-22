@@ -6,6 +6,7 @@ import com.example.testDatabase.demotest.Services.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -15,7 +16,7 @@ public class CourseController {
     private CourseService courseService;
 
     @GetMapping("")
-    private Iterable<Course> getAllCourses(){
+    private List<Course> getAllCourses(){
         return courseService.getCourses();
     }
 
@@ -35,7 +36,7 @@ public class CourseController {
     }
 
     @GetMapping("/{courseId}/students")
-    private Iterable<Student> getCourseMembers(@PathVariable String courseId) throws Exception {
+    private List<Student> getCourseMembers(@PathVariable String courseId) throws Exception {
         return courseService.getCourseMembers(courseId);
     }
 }
