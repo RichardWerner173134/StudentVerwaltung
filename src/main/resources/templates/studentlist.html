@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Studentlist</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/index.js}"></script>
+</head>
+<body>
+    <h1 class="ueberschrift">Studentlist</h1>
+    <div>Das ist die Liste aller Studenten!</div>
+    <table class="datatable">
+        <thead>
+            <tr th:each="person : ${person}">
+                <th th:text="Id"></th>
+                <th th:text="Name"></th>
+                <th th:text="Kurse"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td th:text=""></td>
+                <td th:text="aas"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

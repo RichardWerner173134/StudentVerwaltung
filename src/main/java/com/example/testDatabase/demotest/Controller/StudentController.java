@@ -4,13 +4,14 @@ import com.example.testDatabase.demotest.Entities.Course;
 import com.example.testDatabase.demotest.Entities.Student;
 import com.example.testDatabase.demotest.Services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@RestController
-@RequestMapping("/home/students")
+@Controller
+@RequestMapping("/students")
 public class StudentController {
 
     @Autowired
@@ -20,6 +21,12 @@ public class StudentController {
     private List<Student> getAllStudents (){
         return studentService.getAllStudents();
     }
+
+/*
+    @GetMapping("")
+    private String getAllStudents(){
+        return "studentlist";
+    }*/
 
     @GetMapping("/{id}")
     private Optional<Student> getStudent(@PathVariable String id){

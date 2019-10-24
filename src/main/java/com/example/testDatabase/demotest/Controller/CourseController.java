@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/home/courses")
+@RequestMapping("/courses")
 public class CourseController {
     @Autowired
     private CourseService courseService;

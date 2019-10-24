@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/home/subjects")
+@RequestMapping("/subjects")
 public class SubjectController {
     @Autowired
     private SubjectService subjectService;

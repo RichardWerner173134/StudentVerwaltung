@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="../css/index.css" type="text/css">
+    <link rel="stylesheet"
+          th:href="@{/css/index.css}"
+          type="text/css"
+          media="screen">
     <meta charset="UTF-8">
     <title>Modulplanung</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="../js/index.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/index.js}"></script>
 </head>
-<body>
+<body class="body">
     <h1 class="ueberschrift">Modulplanung</h1>
     <div class="homescreen">
         Welcome Home!
@@ -15,8 +18,8 @@
     <div>
         <button id="btnGetStudentList" class="btn">click me</button>
     </div>
-<div class="studentlist">
+    <div id="studentlist">
 
-</div>
+    </div>
 </body>
 </html>

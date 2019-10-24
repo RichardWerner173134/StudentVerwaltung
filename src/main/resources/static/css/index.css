@@ -1,8 +1,11 @@
 .ueberschrift {
     font-size: 2em;
-    color:green;
+    color:blue;
 }
 .btn {
     color:black;
     background:white;
+}
+.body {
+    background-color:white;
 }
