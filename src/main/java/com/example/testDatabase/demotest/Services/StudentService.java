@@ -19,25 +19,25 @@ public class StudentService {
     @Autowired
     private CourseRepository courseRepository;
 
-    public Optional<Student> getStudent(String id){
+    public Optional<Student> getStudent(String id) {
         return studentRepository.findById(id);
     }
 
-    public void addStudent(Student student){
-        studentRepository.save(student);
+    public void addStudent(String name) throws Exception {
+        studentRepository.save(new Student(name, studentRepository));
     }
 
-    public List<Student> getAllStudents(){
+    public List<Student> getAllStudents() {
         return studentRepository.findAll();
     }
 
-    public void deleteStudent(String id){
+    public void deleteStudent(String id) {
         studentRepository.deleteById(id);
     }
 
-    public void addCourseToStudent(String studentId, String courseId){
+    public void addCourseToStudent(String studentId, String courseId) {
         Optional<Student> student = studentRepository.findById(studentId);
-        if(student.isPresent()) {
+        if (student.isPresent()) {
             student.get().addLikedCourses(courseRepository.findById(courseId).get());
             studentRepository.save(student.get());
         }
@@ -51,7 +51,7 @@ public class StudentService {
         }
     }
 
-    public List<Course> getCoursesForStudent(String studentId){
+    public List<Course> getCoursesForStudent(String studentId) {
         return new ArrayList<>(studentRepository.findById(studentId).get().getAttendedCourses());
     }
 }

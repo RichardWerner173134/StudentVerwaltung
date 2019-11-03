@@ -4,9 +4,13 @@ import com.example.testDatabase.demotest.Entities.Course;
 import com.example.testDatabase.demotest.Entities.Student;
 import com.example.testDatabase.demotest.Services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.MediaTypeEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,24 +22,26 @@ public class StudentController {
     private StudentService studentService;
 
     @GetMapping("")
-    private List<Student> getAllStudents (){
-        return studentService.getAllStudents();
-    }
-
-/*
-    @GetMapping("")
-    private String getAllStudents(){
+    private String getAllStudents(Model model){
+        model.addAttribute("students", studentService.getAllStudents());
         return "studentlist";
-    }*/
+    }
 
     @GetMapping("/{id}")
-    private Optional<Student> getStudent(@PathVariable String id){
-        return studentService.getStudent(id);
+    private String getStudent(@PathVariable String id, Model model) throws Exception {
+        Optional<Student> student = studentService.getStudent(id);
+        if(student.isPresent()){
+            model.addAttribute("students", Arrays.asList(student.get()));
+        }else{
+            throw new Exception("Student with id=" + id + " not found");
+        }
+        return "studentlist";
     }
 
-    @PostMapping("")
-    private void addStudent(@RequestBody Student student){
-        studentService.addStudent(student);
+    @PostMapping(value="", consumes= MediaType.TEXT_PLAIN_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    private void addStudent(@RequestBody String name) throws Exception {
+        studentService.addStudent(name);
     }
 
     @DeleteMapping("/{id}")
@@ -56,5 +62,10 @@ public class StudentController {
     @GetMapping("/{studentId}/courses")
     private List<Course> getCoursesForStudent(@PathVariable String studentId){
         return studentService.getCoursesForStudent(studentId);
+    }
+
+    @GetMapping("/addStudentForm")
+    private String addStudentForm(){
+        return "addStudentForm";
     }
 }

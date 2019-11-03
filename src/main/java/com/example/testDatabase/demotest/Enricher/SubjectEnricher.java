@@ -17,6 +17,11 @@ public class SubjectEnricher {
     @Autowired
     private SubjectRepository subjectRepository;
 
+    /**
+     * @param subjectName
+     * @return
+     * @throws Exception
+     */
     public String generateSubjectId(String subjectName) throws Exception {
         List<Subject> subjects;
         try{
