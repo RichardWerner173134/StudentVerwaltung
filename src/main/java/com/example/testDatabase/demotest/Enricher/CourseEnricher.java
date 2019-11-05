@@ -24,7 +24,7 @@ public class CourseEnricher {
      * @return neue courseNr (größte existierende CourseNr diese Fachs + 1)
      */
     public int generateCourseNr(String subject) throws Exception {
-        List<Course> courses = new ArrayList<>();
+        List<Course> courses;
         try{
             courses = courseRepository.findAll();
         } catch(Exception e){
@@ -50,26 +50,7 @@ public class CourseEnricher {
         return subject + courseNr;
     }
 
-    /**
-     * @param subjectName
-     * @return
-     */
-    public String generateCourseId(String subjectName){
-        List<Course> courses;
-        try{
-            courses = courseRepository.findAll();
-        } catch (Exception e){
-            return "0";
-        }
 
-        int maxCourseId = -1;
-        for(int i = 0; i < courses.size(); i++){
-            if(Integer.parseInt(courses.get(i).getId()) > maxCourseId){
-                maxCourseId = Integer.parseInt(courses.get(i).getId());
-            }
-        }
-        return String.valueOf(maxCourseId + 1);
-    }
     /**
      * @param courseNr
      * @param maxExistingNr

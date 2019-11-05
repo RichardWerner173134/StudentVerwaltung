@@ -17,7 +17,7 @@ import java.util.Set;
 public class Course {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private String id;
+    private long id;
 
     private int courseNr;
 
@@ -37,7 +37,6 @@ public class Course {
 
     public Course(Subject subject) throws Exception {
         this.subject=subject;
-        id=ce.generateCourseId(subject.getSubjectName());
         courseNr = ce.generateCourseNr(subject.getSubjectName());
         name = ce.generateCourseName(subject.getSubjectName(), courseNr);
     }
