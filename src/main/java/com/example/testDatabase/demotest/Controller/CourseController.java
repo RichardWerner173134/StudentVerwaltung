@@ -4,30 +4,43 @@ import com.example.testDatabase.demotest.Entities.Course;
 import com.example.testDatabase.demotest.Entities.Student;
 import com.example.testDatabase.demotest.Services.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping("/courses")
 public class CourseController {
     @Autowired
     private CourseService courseService;
 
     @GetMapping("")
-    private List<Course> getAllCourses(){
-        return courseService.getCourses();
+    private String getAllCourses(Model model){
+        model.addAttribute("courses", courseService.getCourses());
+        return "courselist";
     }
 
     @GetMapping("/{id}")
-    private Optional<Course> getCourse(@PathVariable String id){
-        return courseService.getCourse(id);
+    private String getCourse(@PathVariable String id, Model model) throws Exception {
+        Optional<Course> course = courseService.getCourse(id);
+        if(course.isPresent()) {
+            model.addAttribute("courses", Arrays.asList(course.get()));
+        }else{
+            throw new Exception("Course with id=" + id + " not found");
+        }
+        return "courselist";
     }
 
-    @PostMapping("")
-    private void addCourse(@RequestBody Course course){
-        courseService.addCourse(course);
+    @PostMapping(value="", consumes= MediaType.TEXT_PLAIN_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    private void addCourse(@RequestBody String courseSubject) throws Exception {
+        courseService.addCourse(courseSubject);
     }
 
     @DeleteMapping("/{id}")
@@ -38,5 +51,10 @@ public class CourseController {
     @GetMapping("/{courseId}/students")
     private List<Student> getCourseMembers(@PathVariable String courseId) throws Exception {
         return courseService.getCourseMembers(courseId);
+    }
+
+    @GetMapping("/addCourseForm")
+    private String addCourseForm(){
+        return "addCourseForm";
     }
 }

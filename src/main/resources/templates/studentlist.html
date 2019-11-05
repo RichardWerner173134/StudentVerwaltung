@@ -7,9 +7,12 @@
     <script type="text/javascript" th:src="@{/js/index.js}"></script>
 </head>
 <body>
-    <h1 class="ueberschrift"}></h1>
+    <h1 th:text="Studentlist"}></h1>
     <div>Das ist die Liste aller Studenten!</div>
-    <table class="datatable">
+    <form method="get" action="/students/addStudentForm">
+        <button type="submit">Student hinzufügen</button>
+    </form>
+    <table>
         <thead>
             <tr>
                 <th th:text="Id"></th>
@@ -26,9 +29,6 @@
                 </td>
         </tr>
         </tbody>
-        <form method="get" action="/students/addStudentForm">
-            <button type="submit">Student hinzufügen</button>
-        </form>
     </table>
 </body>
 </html>

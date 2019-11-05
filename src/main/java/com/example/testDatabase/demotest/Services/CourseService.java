@@ -1,9 +1,12 @@
 package com.example.testDatabase.demotest.Services;
 
+import com.example.testDatabase.demotest.Enricher.CourseEnricher;
 import com.example.testDatabase.demotest.Entities.Course;
 import com.example.testDatabase.demotest.Entities.Student;
+import com.example.testDatabase.demotest.Entities.Subject;
 import com.example.testDatabase.demotest.Repositories.CourseRepository;
 import com.example.testDatabase.demotest.Repositories.StudentRepository;
+import com.example.testDatabase.demotest.Repositories.SubjectRepository;
 import lombok.Builder;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +22,33 @@ import java.util.Optional;
 public class CourseService {
 
     @Autowired
+    private CourseEnricher courseEnricher;
+
+    @Autowired
     private CourseRepository courseRepository;
 
     @Autowired
     private StudentRepository studentRepository;
 
+    @Autowired
+    private SubjectRepository subjectRepository;
+
     public List<Course> getCourses(){
         return courseRepository.findAll();
     }
 
-    public void addCourse(Course course){
-        courseRepository.save(course);
+    public void addCourse(String courseSubject) throws Exception {
+        Optional<Subject> subject = subjectRepository.findBySubjectName(courseSubject);
+        if (subject.isPresent()) {
+            int courseNr = courseEnricher.generateCourseNr(subject.get().getSubjectName());
+            courseRepository.save(Course.builder()
+                    .subject(subject.get())
+                    .courseNr(courseNr)
+                    .name(courseEnricher.generateCourseName(subject.get().getSubjectName(), courseNr))
+                    .build());
+        }else{
+            throw new Exception("Subject with name=" + courseSubject + " not found");
+        }
     }
 
     public void deleteCourse(String id){

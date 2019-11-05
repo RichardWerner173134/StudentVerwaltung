@@ -4,8 +4,8 @@ import com.example.testDatabase.demotest.Entities.Course;
 import com.example.testDatabase.demotest.Repositories.CourseRepository;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -13,6 +13,7 @@ import java.util.List;
 @Setter
 @Getter
 @Builder
+@Component
 public class CourseEnricher {
     private int calculatedCourseNr;
 

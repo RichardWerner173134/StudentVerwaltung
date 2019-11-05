@@ -9,19 +9,26 @@
 <body>
     <h1 th:text="Courselist"></h1>
     <div>Das ist die Liste aller Kurse!</div>
+    <form method="get" action="/courses/addCourseForm">
+        <button type="submit">Kurs hinzufügen</button>
+    </form>
     <table>
         <thead>
             <tr>
-                <td>Id</td>
-                <td>Fach</td>
-                <td>Kursname</td>
+                <th th:text="Id"></th>
+                <th th:text="Kursnummer"></th>
+                <th th:text="Kursname"</th>
+                <th th:text="Fach"></th>
+                <th th:text="Kursteilnehmer"></th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="course:${courses}">
                 <td th:text="${course.id}"></td>
-                <td th:text="${course.subject}"></td>
+                <td th:text="${course.courseNr}"></td>
                 <td th:text="${course.name}"></td>
+                <td th:text="${course.subject.subjectName}"></td>
+                <td th:text="${#lists.size(course.attendees)}"></td>
             </tr>
         </tbody>
     </table>
