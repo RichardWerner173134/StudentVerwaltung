@@ -20,7 +20,7 @@
     <tbody>
     <tr th:each="subject:${subjects}">
         <td th:text="${subject.id}"></td>
-        <td th:text="${subject.name}"></td>
+        <td th:text="${subject.subjectName}"></td>
         <td th:text="${#lists.size(subject.courses)}">
         </td>
     </tr>
