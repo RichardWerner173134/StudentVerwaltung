@@ -22,6 +22,7 @@ public class Student {
     private StudentEnricher se = StudentEnricher.builder().build();
 
     @Id
+    @GeneratedValue
     private String id;
 
     private String name;

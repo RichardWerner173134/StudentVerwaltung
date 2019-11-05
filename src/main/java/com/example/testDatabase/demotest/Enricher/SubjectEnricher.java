@@ -18,11 +18,11 @@ public class SubjectEnricher {
     private SubjectRepository subjectRepository;
 
     /**
-     * @param subjectName
+     * @param subjectRepository
      * @return
      * @throws Exception
      */
-    public String generateSubjectId(String subjectName) throws Exception {
+    public String generateSubjectId(SubjectRepository subjectRepository) throws Exception {
         List<Subject> subjects;
         try{
             subjects = subjectRepository.findAll();

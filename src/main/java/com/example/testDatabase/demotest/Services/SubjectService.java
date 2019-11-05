@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Builder
@@ -18,7 +19,12 @@ public class SubjectService {
         return subjectRepository.findAll();
     }
 
-    public void addSubject(Subject subject){
-        subjectRepository.save(subject);
+    public Optional<Subject> getSubject(String id){
+        return subjectRepository.findById(id);
+    }
+
+    public void addSubject(String subjectName) throws Exception {
+        Subject s = new Subject(subjectName, subjectRepository);
+        subjectRepository.save(s);
     }
 }

@@ -8,7 +8,6 @@
     <meta charset="UTF-8">
     <title>Modulplanung</title>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" th:src="@{/js/index.js}"></script>
 </head>
 <body class="body">
     <h1 class="ueberschrift">Modulplanung</h1>
@@ -18,8 +17,8 @@
     <form method="get" action="/students">
         <button type="submit">Studentenliste</button>
     </form>
-    <div id="studentlist">
-
-    </div>
+    <form method="get" action="/subjects">
+        <button type="submit">Fächerliste</button>
+    </form>
 </body>
 </html>

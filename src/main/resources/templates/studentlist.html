@@ -11,19 +11,19 @@
     <div>Das ist die Liste aller Studenten!</div>
     <table class="datatable">
         <thead>
-        <tr>
-            <th th:text="Id"></th>
-            <th th:text="Name"></th>
-            <th th:text="Kursanzahl"></th>
-        </tr>
+            <tr>
+                <th th:text="Id"></th>
+                <th th:text="Name"></th>
+                <th th:text="Kursanzahl"></th>
+            </tr>
         </thead>
         <tbody>
-        <tr th:each="student:${students}">
-            <td th:text="${student.id}"></td>
-            <td th:text="${student.name}"></td>
-            <td th:text="${#lists.size(student.attendedCourses)}">
-                <a th:href="@{courselist}"></a>
-            </td>
+            <tr th:each="student:${students}">
+                <td th:text="${student.id}"></td>
+                <td th:text="${student.name}"></td>
+                <td th:text="${#lists.size(student.attendedCourses)}">
+                    <a th:href="@{courselist}"></a>
+                </td>
         </tr>
         </tbody>
         <form method="get" action="/students/addStudentForm">
