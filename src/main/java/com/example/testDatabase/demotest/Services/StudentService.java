@@ -23,8 +23,8 @@ public class StudentService {
         return studentRepository.findById(id);
     }
 
-    public void addStudent(String name) throws Exception {
-        studentRepository.save(new Student(name, studentRepository));
+    public void addStudent(String studentName) throws Exception {
+        studentRepository.save(new Student(studentName));
     }
 
     public List<Student> getAllStudents() {

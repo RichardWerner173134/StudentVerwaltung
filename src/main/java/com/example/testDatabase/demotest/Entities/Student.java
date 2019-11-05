@@ -1,12 +1,9 @@
 package com.example.testDatabase.demotest.Entities;
 
-import com.example.testDatabase.demotest.Enricher.StudentEnricher;
-import com.example.testDatabase.demotest.Repositories.StudentRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -17,13 +14,9 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Student {
-    @Autowired
-    @Transient
-    private StudentEnricher se = StudentEnricher.builder().build();
-
     @Id
-    @GeneratedValue
-    private String id;
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private long id;
 
     private String name;
 
@@ -34,8 +27,7 @@ public class Student {
             inverseJoinColumns = @JoinColumn(name = "course_id"))
     private Set<Course> attendedCourses;
 
-    public Student(String name, StudentRepository studentRepository) throws Exception {
-        this.id = se.generateId(studentRepository);
+    public Student(String name) throws Exception {
         this.name = name;
     }
 

@@ -24,7 +24,6 @@ public class SubjectService {
     }
 
     public void addSubject(String subjectName) throws Exception {
-        Subject s = new Subject(subjectName);
-        subjectRepository.save(s);
+        subjectRepository.save(new Subject(subjectName));
     }
 }
