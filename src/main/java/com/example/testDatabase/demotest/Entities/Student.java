@@ -16,7 +16,9 @@ public class Student {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
 
-    private String name;
+    private String vorname;
+
+    private String nachname;
 
     @ManyToMany (cascade=CascadeType.ALL)
     @JoinTable(

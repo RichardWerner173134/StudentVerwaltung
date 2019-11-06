@@ -23,9 +23,10 @@ public class StudentService {
         return studentRepository.findById(id);
     }
 
-    public void addStudent(String studentName) throws Exception {
+    public void addStudent(String vorname, String nachname){
         studentRepository.save(Student.builder()
-                                .name(studentName)
+                                .vorname(vorname)
+                                .nachname(nachname)
                                 .build());
     }
 

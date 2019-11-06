@@ -2,6 +2,7 @@ package com.example.testDatabase.demotest.Controller;
 
 import com.example.testDatabase.demotest.Entities.Course;
 import com.example.testDatabase.demotest.Entities.Student;
+import com.example.testDatabase.demotest.JsonRequest.StudentJson;
 import com.example.testDatabase.demotest.Services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,10 +38,10 @@ public class StudentController {
         return "studentlist";
     }
 
-    @PostMapping(value="", consumes= MediaType.TEXT_PLAIN_VALUE)
+    @PostMapping(value="", consumes= MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    private void addStudent(@RequestBody String name) throws Exception {
-        studentService.addStudent(name);
+    private void addStudent(@RequestBody StudentJson studentJson) throws Exception {
+        studentService.addStudent(studentJson.getVorname(), studentJson.getNachname());
     }
 
     @DeleteMapping("/{id}")

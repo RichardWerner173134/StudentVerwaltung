@@ -1,10 +1,14 @@
 $(document).ready(function(){
     $("#newStudent").click(function(){
+        var data = {
+            vorname: document.getElementById('vorname').value,
+            nachname: document.getElementById('nachname').value
+        }
         jQuery.ajax({
             url: "http://localhost:8080/students",
             type: "POST",
-            data: document.getElementById('name').value,
-            contentType: "text/plain",
+            data: JSON.stringify(data),
+            contentType: "application/json",
             success: function (){
                 document.location.href = "http://localhost:8080/students";
                 alert("Student erfolgreich hochgeladen.");
