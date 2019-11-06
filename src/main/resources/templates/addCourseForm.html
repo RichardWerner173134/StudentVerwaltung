@@ -7,8 +7,11 @@
     <script type="text/javascript" th:src="@{/js/index.js}"></script>
 </head>
 <body>
-<h1 th:text="'Add a new Course'"></h1>
-<input type="text" id="name"/>
-<button id="btnNewCourse" th:text="Add"></button>
+    <h1 th:text="'Add a new Course'"></h1>
+    <select id="dropdown">
+        <option value="" selected disabled hidden>Fach auswählen</option>
+        <option th:each="subject:${subjects}" th:value="${subject.subjectName}" th:text="${subject.subjectName}"></option>
+    </select>
+    <button id="btnNewCourse" th:text="Add"></button>
 </body>
 </html>

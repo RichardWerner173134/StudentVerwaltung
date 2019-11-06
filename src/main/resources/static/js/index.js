@@ -28,10 +28,14 @@ $(document).ready(function(){
         })
      });
      $("#btnNewCourse").click(function() {
+        var subject = document.getElementById('dropdown').value;
+        if(subject == ""){
+            return;
+        }
         jQuery.ajax({
             url: "http://localhost:8080/courses",
             type: "POST",
-            data: document.getElementById('name').value,
+            data: subject,
             contentType: "text/plain",
             success: function(){
                 document.location.href = "http://localhost:8080/courses";
