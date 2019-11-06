@@ -24,10 +24,9 @@ public class SubjectService {
     }
 
     public void addSubject(String subjectName) throws Exception {
-        subjectRepository.save(new Subject(subjectName));
+        subjectRepository.save(Subject.builder()
+                                .subjectName(subjectName)
+                                .build());
     }
 
-    public Optional<Subject> getSubjectForSubjectName(String subjectName){
-        return subjectRepository.findBySubjectName(subjectName);
-    }
 }

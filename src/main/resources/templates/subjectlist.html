@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Subjectlist</title>
+    <link rel="stylesheet"
+          th:href="@{/css/index.css}"
+          type="text/css"
+          media="screen">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{/js/index.js}"></script>
 </head>
@@ -21,7 +25,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="subject:${subjects}">
+        <tr th:each="subject:${subjects}" class="tableEntries">
             <td th:text="${subject.id}"></td>
             <td th:text="${subject.subjectName}"></td>
             <td th:text="${#lists.size(subject.courses)}">

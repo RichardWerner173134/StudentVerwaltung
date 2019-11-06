@@ -21,8 +21,4 @@ public class Subject {
 
     @OneToMany(mappedBy = "subject")
     private Set<Course> courses;
-
-    public Subject(String subjectName) throws Exception {
-        this.subjectName=subjectName;
-    }
 }

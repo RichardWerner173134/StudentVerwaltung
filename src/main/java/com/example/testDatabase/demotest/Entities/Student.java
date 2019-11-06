@@ -1,9 +1,6 @@
 package com.example.testDatabase.demotest.Entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -13,6 +10,7 @@ import java.util.Set;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Student {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -26,10 +24,6 @@ public class Student {
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "course_id"))
     private Set<Course> attendedCourses;
-
-    public Student(String name) throws Exception {
-        this.name = name;
-    }
 
     public void addLikedCourses(Course course){
         attendedCourses.add(course);

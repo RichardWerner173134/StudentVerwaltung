@@ -24,7 +24,9 @@ public class StudentService {
     }
 
     public void addStudent(String studentName) throws Exception {
-        studentRepository.save(new Student(studentName));
+        studentRepository.save(Student.builder()
+                                .name(studentName)
+                                .build());
     }
 
     public List<Student> getAllStudents() {
