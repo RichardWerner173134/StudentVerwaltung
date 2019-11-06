@@ -12,7 +12,7 @@
 </head>
 <body>
     <h1 th:text="Studentlist"}></h1>
-    <div style="margin:5px">Das ist die Liste aller Studenten!</div>
+    <div>Das ist die Liste aller Studenten!</div>
     <form method="get" action="/students/addStudentForm">
         <button type="submit">Student hinzufügen</button>
     </form>
@@ -26,14 +26,12 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="student:${students}" class="tableEntries">
+            <tr th:each="student:${students}" class="studentTableEntries" th:id="'row' + ${student.id}">
                 <td th:text="${student.id}"></td>
                 <td th:text="${student.nachname}"></td>
                 <td th:text="${student.vorname}"></td>
-                <td th:text="${#lists.size(student.attendedCourses)}">
-                    <a th:href="@{courselist}"></a>
-                </td>
-        </tr>
+                <td th:text="${#lists.size(student.attendedCourses)}"></td>
+            </tr>
         </tbody>
     </table>
 </body>

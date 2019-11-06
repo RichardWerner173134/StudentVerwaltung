@@ -12,8 +12,10 @@
 </head>
 <body>
     <h1 th:text="Courselist"></h1>
-    <div>Das ist die Liste aller Kurse!</div>
-    <form method="get" action="/courses/addCourseForm">
+    <div th:if="${header == 'showCoursesForStudent'}" th:text="'Das ist die Liste der Kurse von ' + ${student.vorname} + ' ' + ${student.nachname}"></div>
+    <div th:if="${header == 'showAllCourses'}">Das ist die Liste aller Kurse!</div>
+    <div th:if="${header == 'showCourse'}" th:text="'Das ist der Kurs ' + ${courses[0].name}"></div>
+    <form th:if="${header == 'showAllCourses'}" method="get" action="/courses/addCourseForm">
         <button type="submit">Kurs hinzufügen</button>
     </form>
     <table>

@@ -29,7 +29,7 @@ public class StudentController {
 
     @GetMapping("/{id}")
     private String getStudent(@PathVariable String id, Model model) throws Exception {
-        Optional<Student> student = studentService.getStudent(id);
+        Optional<Student> student = studentService.getStudent(Long.parseLong(id));
         if(student.isPresent()){
             model.addAttribute("students", Arrays.asList(student.get()));
         }else{
@@ -60,8 +60,11 @@ public class StudentController {
     }
 
     @GetMapping("/{studentId}/courses")
-    private List<Course> getCoursesForStudent(@PathVariable String studentId){
-        return studentService.getCoursesForStudent(studentId);
+    private String getCoursesForStudent(@PathVariable String studentId, Model model){
+        model.addAttribute("header", "showCoursesForStudent");
+        model.addAttribute("student", studentService.getStudent(Long.parseLong(studentId)).get());
+        model.addAttribute("courses", studentService.getCoursesForStudent(Long.parseLong(studentId)));
+        return "courselist";
     }
 
     @GetMapping("/addStudentForm")

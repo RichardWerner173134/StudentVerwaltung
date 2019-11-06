@@ -55,7 +55,7 @@ public class CourseService {
         courseRepository.deleteById(id);
     }
 
-    public Optional<Course> getCourse(String id){
+    public Optional<Course> getCourse(Long id){
         return courseRepository.findById(id);
     }
 

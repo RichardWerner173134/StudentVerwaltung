@@ -43,4 +43,16 @@ $(document).ready(function(){
             }
         })
      });
+     $(".studentTableEntries").mouseover(function(event){
+        var target = jQuery(this).attr("id");
+        document.getElementById(target).style.backgroundColor="yellow";
+     });
+     $(".studentTableEntries").mouseout(function(event){
+        var target = jQuery(this).attr("id");
+        document.getElementById(target).style.backgroundColor="white";
+     });
+     $(".studentTableEntries").click(function(event){
+        var target = jQuery(this).attr("id");
+        document.location.href = "http://localhost:8080/students/" + document.getElementById(target).children[0].innerHTML + "/courses";
+     });
 });

@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface SubjectRepository extends CrudRepository<Subject, String> {
     List<Subject> findAll();
     Optional<Subject> findBySubjectName(String subjectName);
+    Optional<Subject> findById(Long id);
 }

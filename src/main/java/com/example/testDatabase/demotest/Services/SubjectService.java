@@ -19,7 +19,7 @@ public class SubjectService {
         return subjectRepository.findAll();
     }
 
-    public Optional<Subject> getSubject(String id){
+    public Optional<Subject> getSubject(Long id){
         return subjectRepository.findById(id);
     }
 

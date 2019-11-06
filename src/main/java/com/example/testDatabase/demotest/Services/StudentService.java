@@ -19,7 +19,7 @@ public class StudentService {
     @Autowired
     private CourseRepository courseRepository;
 
-    public Optional<Student> getStudent(String id) {
+    public Optional<Student> getStudent(Long id) {
         return studentRepository.findById(id);
     }
 
@@ -54,7 +54,7 @@ public class StudentService {
         }
     }
 
-    public List<Course> getCoursesForStudent(String studentId) {
+    public List<Course> getCoursesForStudent(Long studentId) {
         return new ArrayList<>(studentRepository.findById(studentId).get().getAttendedCourses());
     }
 }

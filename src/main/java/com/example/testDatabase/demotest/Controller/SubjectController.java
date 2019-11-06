@@ -26,7 +26,7 @@ public class SubjectController {
 
     @GetMapping("/{id}")
     private String getSubject(@PathVariable String id, Model model) throws Exception {
-        Optional<Subject> subject = subjectService.getSubject(id);
+        Optional<Subject> subject = subjectService.getSubject(Long.parseLong(id));
         if(subject.isPresent()){
             model.addAttribute("subjects", Arrays.asList(subject.get()));
         }else{

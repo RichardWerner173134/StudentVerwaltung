@@ -26,14 +26,16 @@ public class CourseController {
 
     @GetMapping("")
     private String getAllCourses(Model model){
+        model.addAttribute("header", "showAllCourses");
         model.addAttribute("courses", courseService.getCourses());
         return "courselist";
     }
 
     @GetMapping("/{id}")
     private String getCourse(@PathVariable String id, Model model) throws Exception {
-        Optional<Course> course = courseService.getCourse(id);
+        Optional<Course> course = courseService.getCourse(Long.parseLong(id));
         if(course.isPresent()) {
+            model.addAttribute("header","showCourse");
             model.addAttribute("courses", Arrays.asList(course.get()));
         }else{
             throw new Exception("Course with id=" + id + " not found");
