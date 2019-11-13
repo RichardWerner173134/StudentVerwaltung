@@ -27,7 +27,7 @@ public class CourseController {
     @GetMapping("")
     private String getAllCourses(Model model){
         model.addAttribute("header", "showAllCourses");
-        model.addAttribute("courses", courseService.getCourses());
+        model.addAttribute("courses", courseService.getAllCourses());
         return "courselist";
     }
 

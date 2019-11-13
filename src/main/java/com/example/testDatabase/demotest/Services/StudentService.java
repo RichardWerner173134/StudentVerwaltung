@@ -38,19 +38,21 @@ public class StudentService {
         studentRepository.deleteById(id);
     }
 
-    public void addCourseToStudent(String studentId, String courseId) {
+    public void addCourseToStudent(Long studentId, Long courseId) {
         Optional<Student> student = studentRepository.findById(studentId);
         if (student.isPresent()) {
-            student.get().addLikedCourses(courseRepository.findById(courseId).get());
-            studentRepository.save(student.get());
+            Student studentDTO = student.get();
+            studentDTO.addLikedCourses(courseRepository.findById(courseId).get());
+            studentRepository.save(studentDTO);
         }
     }
 
     public void deleteCourseFromStudent(String studentId, String courseId) {
         Optional<Student> student = studentRepository.findById(studentId);
         if (student.isPresent()) {
-            student.get().removeLikedCourses(courseRepository.findById(courseId).get());
-            studentRepository.save(student.get());
+            Student studentDTO = student.get();
+            studentDTO.removeLikedCourses(courseRepository.findById(courseId).get());
+            studentRepository.save(studentDTO);
         }
     }
 

@@ -18,6 +18,9 @@
     <form th:if="${header == 'showAllCourses'}" method="get" action="/courses/addCourseForm">
         <button type="submit">Kurs hinzufügen</button>
     </form>
+    <form th:if="${header == 'showCoursesForStudent'}" th:type="get" th:action="'http://localhost:8080/students/' + ${student.id} + '/courses/addCourseForStudent'">
+        <button id="btnAddCourseForStudent" type="submit">für Kurs anmelden</button>
+    </form>
     <table>
         <thead>
             <tr>

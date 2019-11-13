@@ -33,8 +33,24 @@ public class CourseService {
     @Autowired
     private SubjectRepository subjectRepository;
 
-    public List<Course> getCourses(){
+    public List<Course> getAllCourses(){
         return courseRepository.findAll();
+    }
+
+    public List<Course> getSignableCourses(Long studentId) throws Exception {
+        List<Subject> subjects = subjectRepository.findAll();
+        if(!studentRepository.findById(studentId).isPresent()){
+            throw new Exception("Student with id=" + studentId + "not found");
+        }
+        Student studentDTO = studentRepository.findById(studentId).get();
+        List<Course> attendedCourses = new ArrayList<>(studentDTO.getAttendedCourses());
+
+        for(int i = 0; i < attendedCourses.size(); i++){
+            if(subjects.contains(attendedCourses.get(i).getSubject())){
+                subjects.remove(attendedCourses.get(i).getSubject());
+            }
+         }
+        return courseRepository.findBySubjectIn(subjects);
     }
 
     public void addCourse(String courseSubject) throws Exception {

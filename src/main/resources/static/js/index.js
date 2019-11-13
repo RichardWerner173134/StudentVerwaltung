@@ -55,4 +55,22 @@ $(document).ready(function(){
         var target = jQuery(this).attr("id");
         document.location.href = "http://localhost:8080/students/" + document.getElementById(target).children[0].innerHTML + "/courses";
      });
+     $("#btnNewCourseForStudent").click(function(){
+        var studentId = document.getElementById('studentId').innerHTML.split("=")[1];
+        var courseId = document.getElementById('selectedCourse').value.split("=")[1];
+        var course = {
+            courseId: courseId,
+            studentId: studentId
+        }
+        $.ajax({
+            url: "http://localhost:8080/students/" + studentId + "/courses/" + courseId,
+                        type: "PUT",
+                        data: JSON.stringify(course),
+                        contentType: "application/json",
+                        success: function(){
+                            document.location.href = "http://localhost:8080/students/"+ studentId + "/courses";
+                            alert("Kursanmeldung erfolgreich");
+                        }
+        });
+     });
 });

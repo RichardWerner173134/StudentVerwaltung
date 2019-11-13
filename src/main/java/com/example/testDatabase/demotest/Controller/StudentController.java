@@ -2,8 +2,11 @@ package com.example.testDatabase.demotest.Controller;
 
 import com.example.testDatabase.demotest.Entities.Course;
 import com.example.testDatabase.demotest.Entities.Student;
+import com.example.testDatabase.demotest.JsonRequest.CourseForStudentJson;
 import com.example.testDatabase.demotest.JsonRequest.StudentJson;
+import com.example.testDatabase.demotest.Services.CourseService;
 import com.example.testDatabase.demotest.Services.StudentService;
+import com.example.testDatabase.demotest.Services.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,9 +20,14 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/students")
 public class StudentController {
+    @Autowired
+    private SubjectService subjectService;
 
     @Autowired
     private StudentService studentService;
+
+    @Autowired
+    private CourseService courseService;
 
     @GetMapping("")
     private String getAllStudents(Model model){
@@ -49,9 +57,10 @@ public class StudentController {
         studentService.deleteStudent(id);
     }
 
-    @PutMapping("/{studentId}/courses/{courseId}")
-    private void updateStudent(@PathVariable String studentId, @PathVariable String courseId){
-        studentService.addCourseToStudent(studentId, courseId);
+    @PutMapping(value="/{studentId}/courses/{courseId}", consumes= MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    private void updateStudent(@RequestBody CourseForStudentJson courseForStudentJson){
+        studentService.addCourseToStudent(Long.parseLong(courseForStudentJson.getStudentId()), Long.parseLong(courseForStudentJson.getCourseId()));
     }
 
     @DeleteMapping("/{studentId}/courses/{courseId}")
@@ -71,4 +80,18 @@ public class StudentController {
     private String addStudentForm(){
         return "addStudentForm";
     }
+
+    @GetMapping("/{studentId}/courses/addCourseForStudent")
+    private String addCourseForStudent (@PathVariable String studentId, Model model) throws Exception {
+        Optional<Student> student = studentService.getStudent(Long.parseLong(studentId));
+        if(student.isPresent()){
+            model.addAttribute("student", student.get());
+        }else{
+            throw new Exception("Student with id " + studentId + " not found");
+        }
+        List<Course> courses = courseService.getSignableCourses(Long.parseLong(studentId));
+        model.addAttribute("courses", courses);
+        return "addCourseForStudent";
+    }
+
 }
