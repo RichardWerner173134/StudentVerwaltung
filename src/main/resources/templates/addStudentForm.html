@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Studentlist</title>
+    <link rel="stylesheet"
+          th:href="@{/css/index.css}"
+          type="text/css"
+          media="screen">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{/js/index.js}"></script>
 </head>
 <body>
-    <h1 th:text="'Add a new Student'"></h1>
+    <h1 class="ueberschrift" th:text="'Add a new Student'"></h1>
     <p>
         Vorname
         <input type="text" id="vorname"/>
@@ -16,6 +20,6 @@
         Nachname
         <input type="text" id="nachname"/>
     </p>
-    <button id="newStudent" th:text="Add"></button>
+    <button class="btn" id="newStudent" th:text="Add"></button>
 </body>
 </html>

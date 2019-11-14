@@ -11,10 +11,10 @@
     <script type="text/javascript" th:src="@{/js/index.js}"></script>
 </head>
 <body>
-    <h1 th:text="Studentlist"}></h1>
+    <h1 class="ueberschrift" th:text="Studentlist"}></h1>
     <div>Das ist die Liste aller Studenten!</div>
     <form method="get" action="/students/addStudentForm">
-        <button type="submit">Student hinzufügen</button>
+        <button class="btn" type="submit">Student hinzufügen</button>
     </form>
     <table>
         <thead>
@@ -25,8 +25,8 @@
                 <th th:text="Kurse"></th>
             </tr>
         </thead>
-        <tbody>
-            <tr th:each="student:${students}" class="studentTableEntries" th:id="'row' + ${student.id}">
+        <tbody id="studentlistTBody">
+            <tr th:each="student:${students}" class="tableEntries" th:id="'row' + ${student.id}">
                 <td th:text="${student.id}"></td>
                 <td th:text="${student.nachname}"></td>
                 <td th:text="${student.vorname}"></td>

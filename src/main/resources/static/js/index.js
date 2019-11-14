@@ -43,15 +43,15 @@ $(document).ready(function(){
             }
         })
      });
-     $(".studentTableEntries").mouseover(function(event){
+     $(".tableEntries").mouseover(function(event){
         var target = jQuery(this).attr("id");
         document.getElementById(target).style.backgroundColor="yellow";
      });
-     $(".studentTableEntries").mouseout(function(event){
+     $(".tableEntries").mouseout(function(event){
         var target = jQuery(this).attr("id");
         document.getElementById(target).style.backgroundColor="white";
      });
-     $(".studentTableEntries").click(function(event){
+     $($("#studentlistTBody").children()).click(function(event){
         var target = jQuery(this).attr("id");
         document.location.href = "http://localhost:8080/students/" + document.getElementById(target).children[0].innerHTML + "/courses";
      });
@@ -64,13 +64,13 @@ $(document).ready(function(){
         }
         $.ajax({
             url: "http://localhost:8080/students/" + studentId + "/courses/" + courseId,
-                        type: "PUT",
-                        data: JSON.stringify(course),
-                        contentType: "application/json",
-                        success: function(){
-                            document.location.href = "http://localhost:8080/students/"+ studentId + "/courses";
-                            alert("Kursanmeldung erfolgreich");
-                        }
+            type: "PUT",
+            data: JSON.stringify(course),
+            contentType: "application/json",
+            success: function(){
+                document.location.href = "http://localhost:8080/students/"+ studentId + "/courses";
+                alert("Kursanmeldung erfolgreich");
+            }
         });
      });
 });

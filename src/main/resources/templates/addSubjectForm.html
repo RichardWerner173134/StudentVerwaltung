@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>addSubjectForm</title>
+    <link rel="stylesheet"
+          th:href="@{/css/index.css}"
+          type="text/css"
+          media="screen">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{/js/index.js}"></script>
 </head>
 <body>
-    <h1 th:text="'Add a new Subject'"></h1>
+    <h1 class="ueberschrift" th:text="'Add a new Subject'"></h1>
     <input type="text" id="name"/>
-    <button id="btnNewSubject" th:text="Add"></button>
+    <button class="btn" id="btnNewSubject" th:text="Add"></button>
 </body>
 </html>

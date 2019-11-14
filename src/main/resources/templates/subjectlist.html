@@ -11,26 +11,25 @@
     <script type="text/javascript" th:src="@{/js/index.js}"></script>
 </head>
 <body>
-    <h1 th:text="Subjectlist"></h1>
+    <h1 class="ueberschrift" th:text="Subjectlist"></h1>
     <div>Das ist die Liste aller Fächer!</div>
     <form method="get" action="/subjects/addSubjectForm">
-        <button type="submit">Fach hinzufügen</button>
+        <button class="btn" type="submit">Fach hinzufügen</button>
     </form>
     <table>
         <thead>
-        <tr>
-            <th th:text="Id"></th>
-            <th th:text="Fachbezeichnung"></th>
-            <th th:text="Kursanzahl"></th>
-        </tr>
+            <tr>
+                <th th:text="Id"></th>
+                <th th:text="Fachbezeichnung"></th>
+                <th th:text="Kursanzahl"></th>
+            </tr>
         </thead>
-        <tbody>
-        <tr th:each="subject:${subjects}" class="tableEntries">
-            <td th:text="${subject.id}"></td>
-            <td th:text="${subject.subjectName}"></td>
-            <td th:text="${#lists.size(subject.courses)}">
-            </td>
-        </tr>
+        <tbody id="subjectlistTBody">
+            <tr th:each="subject:${subjects}" class="tableEntries" th:id="'row' + ${subject.id}">
+                <td th:text="${subject.id}"></td>
+                <td th:text="${subject.subjectName}"></td>
+                <td th:text="${#lists.size(subject.courses)}"></td>
+            </tr>
         </tbody>
     </table>
 </body>
