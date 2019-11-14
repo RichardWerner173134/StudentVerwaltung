@@ -18,3 +18,34 @@
 .tableEntries {
     text-align:center;
 }
+.imageCenter {
+    display:block;
+    margin:0 auto;
+    height:70px;
+}
+nav{
+	text-align:center;
+}
+nav ul{
+	list-style-type:none;
+	background-color:#F2F2F2;
+    border:3px solid #DEDCD9;
+    border-radius:15px;
+}
+nav li{
+	display:inline;
+	margin-right:50px;;
+}
+a{
+	color:#777;
+	text-decoration:none;
+}
+.bodyDiv {
+    color:#777;
+    text-decoration:none;
+    order:3px solid #DEDCD9;
+    border-radius:15px;
+}
+.text {
+
+}

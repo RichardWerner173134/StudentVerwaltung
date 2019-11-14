@@ -10,18 +10,23 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body class="body">
-    <h1 class="ueberschrift">Modulplanung</h1>
-    <div class="homescreen">
-        Wilkommen
+    <div id="wrapper">
+        <header class="indexHeader">
+            <img th:src="@{/images/school.png}" class="imageCenter">
+        </header>
+        <nav>
+            <ul>
+                <li><a th:href="@{/students}">Studentenliste</a></li>
+                <li><a th:href="@{/courses}">Kursliste</a></li>
+                <li><a th:href="@{/subjects}">Fächerliste</a></li>
+            </ul>
+        </nav>
+        <section>
+            <div class="bodyDiv">
+                <p class="text" th:text="'Wilkommen auf der Homepage! \n Hier können Studenten, Kurse und Fächer verwaltet werden.'"></p>
+            </div>
+        </section>
+        <footer></footer>
     </div>
-    <form method="get" action="/students">
-        <button class="btn" type="submit">Studentenliste</button>
-    </form>
-    <form method="get" action="/subjects">
-        <button class="btn" type="submit">Fächerliste</button>
-    </form>
-    <form method="get" action="/courses">
-        <button class="btn" type="submit">Kursliste</button>
-    </form>
 </body>
 </html>
