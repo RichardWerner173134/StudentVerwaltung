@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet"
+          th:href="@{/css/index.css}"
+          type="text/css"
+          media="screen">
+    <meta charset="UTF-8">
+    <title>header</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+    <header class="indexHeader">
+        <img th:src="@{/images/school.png}" class="imageCenter">
+    </header>
+    <nav>
+        <ul>
+            <li><a th:href="@{/students}">Studentenliste</a></li>
+            <li><a th:href="@{/courses}">Kursliste</a></li>
+            <li><a th:href="@{/subjects}">Fächerliste</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

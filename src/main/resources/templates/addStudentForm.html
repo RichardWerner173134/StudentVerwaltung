@@ -11,6 +11,8 @@
     <script type="text/javascript" th:src="@{/js/index.js}"></script>
 </head>
 <body>
+    <header th:replace="fragments/header :: header"></header>
+    <nav th:replace="fragments/header :: nav"></nav>
     <h1 class="ueberschrift" th:text="'Add a new Student'"></h1>
     <p>
         Vorname

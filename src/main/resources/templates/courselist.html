@@ -11,6 +11,8 @@
     <script type="text/javascript" th:src="@{/js/index.js}"></script>
 </head>
 <body>
+    <header th:replace="fragments/header :: header"></header>
+    <nav th:replace="fragments/header :: nav"></nav>
     <h1 class="ueberschrift" th:text="Courselist"></h1>
     <div th:if="${header == 'showCoursesForStudent'}" th:text="'Das ist die Liste der Kurse von ' + ${student.vorname} + ' ' + ${student.nachname}"></div>
     <div th:if="${header == 'showAllCourses'}">Das ist die Liste aller Kurse!</div>
