@@ -55,6 +55,10 @@ $(document).ready(function(){
         var target = jQuery(this).attr("id");
         document.location.href = "http://localhost:8080/students/" + document.getElementById(target).children[0].innerHTML + "/courses";
      });
+     $($("#courselistTBody").children()).click(function(event){
+        var target = jQuery(this).attr("id");
+        document.location.href = "http://localhost:8080/courses/" + document.getElementById(target).children[0].innerHTML + "/students";
+     });
      $("#btnNewCourseForStudent").click(function(){
         var studentId = document.getElementById('studentId').innerHTML.split("=")[1];
         var courseId = document.getElementById('selectedCourse').value.split("=")[1];
@@ -73,4 +77,5 @@ $(document).ready(function(){
             }
         });
      });
+
 });

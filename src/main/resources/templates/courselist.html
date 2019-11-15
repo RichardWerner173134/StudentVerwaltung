@@ -32,7 +32,7 @@
                 <th th:text="Kursteilnehmer"></th>
             </tr>
         </thead>
-        <tbody id="courselistTBody">
+        <tbody th:id="courselistTBody">
             <tr th:each="course:${courses}" class="tableEntries" th:id="'row' + ${course.id}">
                 <td th:text="${course.id}"></td>
                 <td th:text="${course.name}"></td>

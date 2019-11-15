@@ -55,8 +55,11 @@ public class CourseController {
     }
 
     @GetMapping("/{courseId}/students")
-    private List<Student> getCourseMembers(@PathVariable String courseId) throws Exception {
-        return courseService.getCourseMembers(courseId);
+    private String getCourseMembers(@PathVariable String courseId, Model model) throws Exception {
+        model.addAttribute("header", "showCourseMembers");
+        model.addAttribute("students", courseService.getCourseMembers(Long.parseLong(courseId)));
+        model.addAttribute("course", courseService.getCourse(Long.parseLong(courseId)).get());
+        return "studentlist";
     }
 
     @GetMapping("/addCourseForm")

@@ -31,6 +31,7 @@ public class StudentController {
 
     @GetMapping("")
     private String getAllStudents(Model model){
+        model.addAttribute("header", "showAllStudents");
         model.addAttribute("students", studentService.getAllStudents());
         return "studentlist";
     }
@@ -39,6 +40,7 @@ public class StudentController {
     private String getStudent(@PathVariable String id, Model model) throws Exception {
         Optional<Student> student = studentService.getStudent(Long.parseLong(id));
         if(student.isPresent()){
+            model.addAttribute("header", "showAllStudents");
             model.addAttribute("students", Arrays.asList(student.get()));
         }else{
             throw new Exception("Student with id=" + id + " not found");

@@ -75,7 +75,7 @@ public class CourseService {
         return courseRepository.findById(id);
     }
 
-    public List<Student> getCourseMembers(String id) throws Exception {
+    public List<Student> getCourseMembers(Long id) throws Exception {
         Optional<Course> course = courseRepository.findById(id);
         if(course.isPresent()){
             return new ArrayList<>(course.get().getAttendees());

@@ -14,8 +14,9 @@
     <header th:replace="fragments/header :: header"></header>
     <nav th:replace="fragments/header :: nav"></nav>
     <h1 class="ueberschrift" th:text="Studentlist"}></h1>
-    <div>Das ist die Liste aller Studenten!</div>
-    <form method="get" action="/students/addStudentForm">
+    <div th:if="${header == 'showAllStudents'}" th:text="'Das ist die Liste aller Studenten!'"></div>
+    <div th:if="${header == 'showCourseMembers'}" th:text="'Das ist die Liste der Studenten des Kurses ' + ${course.name}"></div>
+    <form th:if="${header == 'showAllStudents'}" method="get" action="/students/addStudentForm">
         <button class="btn" type="submit">Student hinzufügen</button>
     </form>
     <table>
@@ -24,15 +25,15 @@
                 <th th:text="Id"></th>
                 <th th:text="Nachname"></th>
                 <th th:text="Vorname"></th>
-                <th th:text="Kurse"></th>
+                <th th:if="${header == 'showAllStudents'}" th:text="Kurse"></th>
             </tr>
         </thead>
-        <tbody id="studentlistTBody">
+        <tbody th:id="studentlistTBody">
             <tr th:each="student:${students}" class="tableEntries" th:id="'row' + ${student.id}">
                 <td th:text="${student.id}"></td>
                 <td th:text="${student.nachname}"></td>
                 <td th:text="${student.vorname}"></td>
-                <td th:text="${#lists.size(student.attendedCourses)}"></td>
+                <td th:if="${header == 'showAllStudents'}" th:text="${#lists.size(student.attendedCourses)}"></td>
             </tr>
         </tbody>
     </table>
