@@ -47,5 +47,15 @@ a{
     border-radius:15px;
 }
 .text {
-
+    text-align:center;
+}
+.section {
+    float:left;
+}
+.sidebar {
+    float:right;
+}
+.sidebarImage {
+    height: 50px;
+    width: 50px;
 }
