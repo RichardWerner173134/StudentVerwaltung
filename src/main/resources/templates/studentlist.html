@@ -20,6 +20,9 @@
         <form th:if="${header == 'showAllStudents'}" method="get" action="/students/addStudentForm">
             <button class="btn" type="submit">Student hinzufügen</button>
         </form>
+        <form th:if="${header == 'showAllStudents'}" method="get" action="/students/deleteStudentForm">
+            <button class="btn" type="submit">Student löschen</button>
+        </form>
         <table>
             <thead>
                 <tr>

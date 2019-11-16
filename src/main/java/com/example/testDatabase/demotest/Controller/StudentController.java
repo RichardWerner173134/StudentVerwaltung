@@ -54,9 +54,10 @@ public class StudentController {
         studentService.addStudent(studentJson.getVorname(), studentJson.getNachname());
     }
 
-    @DeleteMapping("/{id}")
-    private void deleteStudent(@PathVariable String id){
-        studentService.deleteStudent(id);
+    @GetMapping("/deleteStudentForm")
+    private String deleteStudent(Model model){
+        model.addAttribute("students", studentService.getAllStudents());
+        return "deleteStudentForm";
     }
 
     @PutMapping(value="/{studentId}/courses/{courseId}", consumes= MediaType.APPLICATION_JSON_VALUE)

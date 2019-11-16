@@ -15,6 +15,7 @@ $(document).ready(function(){
             }
         });
      });
+     $("#del")
      $("#btnNewSubject").click(function() {
         jQuery.ajax({
             url: "http://localhost:8080/subjects",
