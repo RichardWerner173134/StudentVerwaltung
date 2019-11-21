@@ -41,6 +41,11 @@ public class SubjectController {
         subjectService.addSubject(subjectName);
     }
 
+    @GetMapping(value="/{id}/courses")
+    private String getCoursesForSubject(Model model) throws Exception {
+        throw new Exception("noch nicht implementiert");
+    }
+
     @GetMapping("/addSubjectForm")
     private String addSubjectForm(){
         return "addSubjectForm";

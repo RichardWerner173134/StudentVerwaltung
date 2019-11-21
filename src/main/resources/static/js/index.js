@@ -15,7 +15,6 @@ $(document).ready(function(){
             }
         });
      });
-     $("#del")
      $("#btnNewSubject").click(function() {
         jQuery.ajax({
             url: "http://localhost:8080/subjects",
@@ -59,6 +58,10 @@ $(document).ready(function(){
      $($("#courselistTBody").children()).click(function(event){
         var target = jQuery(this).attr("id");
         document.location.href = "http://localhost:8080/courses/" + document.getElementById(target).children[0].innerHTML + "/students";
+     });
+     $($("#subjectlistTBody").children()).click(function(event){
+        var target = jQuery(this).attr("id");
+        document.location.href = "http://localhost:8080/subjects/" + document.getElementById(target).children[0].innerHTML + "/courses";
      });
      $("#btnNewCourseForStudent").click(function(){
         var studentId = document.getElementById('studentId').innerHTML.split("=")[1];

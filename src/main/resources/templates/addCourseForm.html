@@ -13,11 +13,14 @@
 <body>
     <header th:replace="fragments/header :: header"></header>
     <nav th:replace="fragments/header :: nav"></nav>
-    <h1 class="ueberschrift" th:text="'Add a new Course'"></h1>
-    <select id="dropdown">
-        <option value="" selected disabled hidden>Fach auswählen</option>
-        <option th:each="subject:${subjects}" th:value="${subject.subjectName}" th:text="${subject.subjectName}"></option>
-    </select>
-    <button class="btn" id="btnNewCourse" th:text="Add"></button>
+    <section class="section">
+        <h1 class="ueberschrift" th:text="'Neuen Kurs hinzufügen'"></h1>
+        <select id="dropdown">
+            <option value="" selected disabled hidden>Fach auswählen</option>
+            <option th:each="subject:${subjects}" th:value="${subject.subjectName}" th:text="${subject.subjectName}"></option>
+        </select>
+        <button class="btn" id="btnNewCourse" th:text="Hinzufügen"></button>
+    </section>
+    <aside class="sidebar" th:replace="fragments/sidebar :: aside"></aside>
 </body>
 </html>

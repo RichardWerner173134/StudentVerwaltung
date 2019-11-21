@@ -13,26 +13,29 @@
 <body>
     <header th:replace="fragments/header :: header"></header>
     <nav th:replace="fragments/header :: nav"></nav>
-    <h1 class="ueberschrift" th:text="Subjectlist"></h1>
-    <div>Das ist die Liste aller Fächer!</div>
-    <form method="get" action="/subjects/addSubjectForm">
-        <button class="btn" type="submit">Fach hinzufügen</button>
-    </form>
-    <table>
-        <thead>
-            <tr>
-                <th th:text="Id"></th>
-                <th th:text="Fachbezeichnung"></th>
-                <th th:text="Kursanzahl"></th>
-            </tr>
-        </thead>
-        <tbody id="subjectlistTBody">
-            <tr th:each="subject:${subjects}" class="tableEntries" th:id="'row' + ${subject.id}">
-                <td th:text="${subject.id}"></td>
-                <td th:text="${subject.subjectName}"></td>
-                <td th:text="${#lists.size(subject.courses)}"></td>
-            </tr>
-        </tbody>
-    </table>
+    <section class="section">
+        <h1 class="ueberschrift" th:text="Subjectlist"></h1>
+        <div>Das ist die Liste aller Fächer!</div>
+        <form method="get" action="/subjects/addSubjectForm">
+            <button class="btn" type="submit">Fach hinzufügen</button>
+        </form>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th th:text="Id"></th>
+                    <th th:text="Fachbezeichnung"></th>
+                    <th th:text="Kursanzahl"></th>
+                </tr>
+            </thead>
+            <tbody id="subjectlistTBody">
+                <tr th:each="subject:${subjects}" class="tableEntries" th:id="'row' + ${subject.id}">
+                    <td th:text="${subject.id}"></td>
+                    <td th:text="${subject.subjectName}"></td>
+                    <td th:text="${#lists.size(subject.courses)}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <aside class="sidebar" th:replace="fragments/sidebar :: aside"></aside>
 </body>
 </html>

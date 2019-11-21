@@ -20,5 +20,6 @@
             <option th:each="student:${students}" th:value="${student.vorname + ' ' + student.nachname}" th:text="${student.vorname + ' ' + student.nachname}"></option>
         </select>
     </section>
+    <aside class="sidebar" th:replace="fragments/sidebar :: aside"></aside>
 </body>
 </html>

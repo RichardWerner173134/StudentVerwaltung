@@ -13,15 +13,18 @@
 <body>
     <header th:replace="fragments/header :: header"></header>
     <nav th:replace="fragments/header :: nav"></nav>
-    <h1 class="ueberschrift" th:text="'Add a new Student'"></h1>
-    <p>
-        Vorname
-        <input type="text" id="vorname"/>
-    </p>
-    <p>
-        Nachname
-        <input type="text" id="nachname"/>
-    </p>
-    <button class="btn" id="newStudent" th:text="Add"></button>
+    <section class="section">
+        <h1 class="ueberschrift" th:text="'Neuen Studenten hinzufügen'"></h1>
+        <p>
+            Vorname
+            <input type="text" id="vorname"/>
+        </p>
+        <p>
+            Nachname
+            <input type="text" id="nachname"/>
+        </p>
+        <button class="btn" id="newStudent" th:text="Hinzufügen"></button>
+    </section>
+    <aside class="sidebar" th:replace="fragments/sidebar :: aside"></aside>
 </body>
 </html>

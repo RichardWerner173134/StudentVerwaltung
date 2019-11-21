@@ -13,8 +13,11 @@
 <body>
     <header th:replace="fragments/header :: header"></header>
     <nav th:replace="fragments/header :: nav"></nav>
-    <h1 class="ueberschrift" th:text="'Add a new Subject'"></h1>
-    <input type="text" id="name"/>
-    <button class="btn" id="btnNewSubject" th:text="Add"></button>
+    <section class="section">
+        <h1 class="ueberschrift" th:text="'Neues Fach hinzufügen'"></h1>
+        <input type="text" id="name"/>
+        <button class="btn" id="btnNewSubject" th:text="Hinzufügen"></button>
+    </section>
+    <aside class="sidebar" th:replace="fragments/sidebar :: aside"></aside>
 </body>
 </html>

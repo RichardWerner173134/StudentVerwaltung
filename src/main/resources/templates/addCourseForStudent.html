@@ -3,20 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Kursliste für Student</title>
+    <link rel="stylesheet"
+          th:href="@{/css/index.css}"
+          type="text/css"
+          media="screen">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{/js/index.js}"></script>
 </head>
 <body>
     <header th:replace="fragments/header :: header"></header>
     <nav th:replace="fragments/header :: nav"></nav>
-    <h1 th:text="'Add a new Course to student ' + ${student.vorname} + ' ' + ${student.nachname}"></h1>
-    <h1 th:id="studentId" th:text="'Id=' + ${student.id}"></h1>
-    <div th:id="courseselector">
-        <select id="selectedCourse">
-            <option value="" selected disabled hidden>Fach auswählen</option>
-            <option th:each="course:${courses}" th:value="${course.name} + ', id=' + ${course.id}" th:text="${course.name}"></option>
-        </select>
-    </div>
-    <button id="btnNewCourseForStudent" th:text="Add"></button>
+    <section class="section">
+        <h1 th:text="'Kursneuanmeldung für ' + ${student.vorname} + ' ' + ${student.nachname} + ', id=' + ${student.id}"></h1>
+        <div th:id="courseselector">
+            <select id="selectedCourse">
+                <option value="" selected disabled hidden>Fach auswählen</option>
+                <option th:each="course:${courses}" th:value="${course.name} + ', id=' + ${course.id}" th:text="${course.name}"></option>
+            </select>
+        </div>
+        <button class="btn" id="btnNewCourseForStudent" th:text="Hinzufügen"></button>
+    </section>
+    <aside class="sidebar" th:replace="fragments/sidebar :: aside"></aside>
 </body>
 </html>
