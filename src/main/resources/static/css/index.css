@@ -5,6 +5,7 @@
 .btn {
     color:black;
     background:white;
+    background-color: #F2F2F2;
     padding:2px;
     margin:2px;
     border-radius:2px;
@@ -64,4 +65,10 @@ a{
 .table {
     margin-left: auto;
     margin-right: auto;
+}
+#leftTable {
+    float: left;
+}
+#rightTable {
+    float: right;
 }

@@ -14,7 +14,7 @@
     <header th:replace="fragments/header :: header"></header>
     <nav th:replace="fragments/header :: nav"></nav>
     <section class="section">
-        <h1 th:text="'Kursneuanmeldung für ' + ${student.vorname} + ' ' + ${student.nachname} + ', id=' + ${student.id}"></h1>
+        <h1 id="h1" th:text="'Kursneuanmeldung für ' + ${student.vorname} + ' ' + ${student.nachname} + ', id=' + ${student.id}"></h1>
         <div th:id="courseselector">
             <select id="selectedCourse">
                 <option value="" selected disabled hidden>Fach auswählen</option>

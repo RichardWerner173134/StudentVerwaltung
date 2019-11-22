@@ -8,6 +8,7 @@
           type="text/css"
           media="screen">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/deleteStudent.js}"></script>
     <script type="text/javascript" th:src="@{/js/index.js}"></script>
 </head>
 <body>
@@ -15,10 +16,36 @@
     <nav th:replace="fragments/header :: nav"></nav>
     <section class="section">
         <h1 th:text="'Student löschen'"></h1>
-        <select id="deleteStudentDropdown">
-            <option value="" selected disabled hidden>Student auswählen</option>
-            <option th:each="student:${students}" th:value="${student.vorname + ' ' + student.nachname}" th:text="${student.vorname + ' ' + student.nachname}"></option>
-        </select>
+        <table id="leftTable" class="table">
+            <thead>
+                <tr>
+                    <th th:text="Id"></th>
+                    <th th:text="Nachname"></th>
+                    <th th:text="Vorname"></th>
+                </tr>
+            </thead>
+            <tbody th:id="leftDeleteStudentTBody">
+                <tr th:each="student:${students}" th:id="'row' + ${student.id}">
+                    <td th:text="${student.id}"></td>
+                    <td th:text="${student.nachname}"></td>
+                    <td th:text="${student.vorname}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <button th:text="'-->'" class="btn" id="btnMoveRight" disabled></button>
+        <button th:text="'<--'" class="btn" id="btnMoveLeft" disabled></button>
+        <table id="rightTable" class="table">
+            <thead>
+                <tr>
+                    <th th:text="Id"></th>
+                    <th th:text="Nachname"></th>
+                    <th th:text="Vorname"></th>
+                </tr>
+            </thead>
+            <tbody th:id="rightDeleteStudentTBody">
+
+            </tbody>
+        </table>
     </section>
     <aside class="sidebar" th:replace="fragments/sidebar :: aside"></aside>
 </body>

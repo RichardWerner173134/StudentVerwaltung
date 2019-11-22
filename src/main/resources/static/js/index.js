@@ -64,7 +64,7 @@ $(document).ready(function(){
         document.location.href = "http://localhost:8080/subjects/" + document.getElementById(target).children[0].innerHTML + "/courses";
      });
      $("#btnNewCourseForStudent").click(function(){
-        var studentId = document.getElementById('studentId').innerHTML.split("=")[1];
+        var studentId = document.getElementById('h1').innerHTML.split("=")[1];
         var courseId = document.getElementById('selectedCourse').value.split("=")[1];
         var course = {
             courseId: courseId,
@@ -81,5 +81,28 @@ $(document).ready(function(){
             }
         });
      });
-
+    $("#leftDeleteStudentTBody").on("click", "tr", function(event){
+        var target = document.getElementById(jQuery(this).attr("id"));
+        setSelectedItem(target);
+        toggleColor();
+        activateMoveRightButton();
+        deactivateMoveLeftButton();
+    });
+    $("#btnMoveRight").click(function(){
+        removeSelectedItemFromLeftTable();
+        addSelectedItemToRightTable();
+        deactivateMoveRightButton();
+    });
+    $("#rightDeleteStudentTBody").on("click", "tr", function(event){
+        var target = document.getElementById(jQuery(this).attr("id"));
+        setSelectedItem(target);
+        toggleColor();
+        activateMoveLeftButton();
+        deactivateMoveRightButton();
+    });
+    $("#btnMoveLeft").click(function(){
+        removeSelectedItemFromRightTable();
+        addSelectedItemToLeftTable();
+        deactivateMoveLeftButton();
+    });
 });
