@@ -92,7 +92,7 @@ $(document).ready(function(){
         removeSelectedItemFromLeftTable();
         addSelectedItemToRightTable();
         deactivateMoveRightButton();
-        toggleDeleteButton(false);
+        toggleDeleteButton();
     });
     $("#rightDeleteStudentTBody").on("click", "tr", function(event){
         var target = document.getElementById(jQuery(this).attr("id"));
@@ -105,9 +105,6 @@ $(document).ready(function(){
         removeSelectedItemFromRightTable();
         addSelectedItemToLeftTable();
         deactivateMoveLeftButton();
-        if(document.getElementById('rightDeleteStudentTBody').children.length == 0){
-            toggleDeleteBtn(true);
-        }
     });
     $("#btnDelete").click(function(){
         var url = "http://localhost:8080/students";
@@ -119,17 +116,18 @@ $(document).ready(function(){
                 type: "DELETE",
                 contentType: "text/plain",
                 success: function(){
-                    console.log("Löschen erfolgreich für " + element.children[0]);
+                    console.log("Löschen erfolgreich für StudentId" + element.children[0].innerHTML);
                     document.getElementById('rightDeleteStudentTBody').removeChild(element);
                 },
                 error: function(){
-                    console.log("Löschen fehlgeschlagen für " + element.children[0]);
+                    console.log("Löschen fehlgeschlagen für StudentId" + element.children[0].innerHTML);
                     document.getElementById('rightDeleteStudentTBody').removeChild(element);
                     var newRow = document.getElementById('leftDeleteStudentTBody').insertRow();
-                    for(i = 0; i < 3; i++){
-                        var newCell = newRow.insertCell(i);
-                        newCell.innerHTML = element.children[i].innerHTML;
+                    for(j = 0; j < 3; j++){
+                        var newCell = newRow.insertCell(j);
+                        newCell.innerHTML = element.children[j].innerHTML;
                     }
+                    newRow.id = "row" + newRow.children[0].innerHTML;
                 },
             });
         }

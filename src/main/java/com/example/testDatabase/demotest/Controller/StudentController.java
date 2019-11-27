@@ -68,7 +68,7 @@ public class StudentController {
 
     @DeleteMapping("/{studentId}/courses/{courseId}")
     private void deleteCourseFromStudent(@PathVariable String studentId, @PathVariable String courseId){
-        studentService.deleteCourseFromStudent(Long.parseLong(studentId), courseId);
+        studentService.deleteCourseFromStudent(Long.parseLong(studentId), Long.parseLong(courseId));
     }
 
     @GetMapping("/{studentId}/courses")
@@ -100,6 +100,10 @@ public class StudentController {
     @DeleteMapping("/{studentId}")
     @ResponseStatus(HttpStatus.OK)
     private void deleteStudent(@PathVariable String studentId){
+        List<Course> studentCourses = studentService.getCoursesForStudent(Long.parseLong(studentId));
+        for(Course courseToRemove: studentCourses){
+            studentService.deleteCourseFromStudent(Long.parseLong(studentId), courseToRemove.getId());
+        }
         studentService.deleteStudent(Long.parseLong(studentId));
     }
 

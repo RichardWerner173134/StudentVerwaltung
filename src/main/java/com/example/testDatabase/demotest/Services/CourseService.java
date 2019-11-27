@@ -67,7 +67,7 @@ public class CourseService {
         }
     }
 
-    public void deleteCourse(String id){
+    public void deleteCourse(Long id){
         courseRepository.deleteById(id);
     }
 

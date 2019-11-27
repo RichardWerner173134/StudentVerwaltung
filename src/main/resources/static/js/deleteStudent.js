@@ -33,6 +33,7 @@ function addSelectedItemToLeftTable(){
         var newCell = newRow.insertCell(i);
         newCell.innerHTML = selectedItem.children[i].innerHTML;
     }
+    newRow.id = "row" + newRow.children[0].innerHTML;
 }
 function deactivateMoveLeftButton(){
     document.getElementById('btnMoveLeft').disabled = true;
@@ -46,6 +47,10 @@ function toggleColor(){
     }
     selectedItem.style.backgroundColor = "#F2F2F2";
 }
-function toggleDeleteButton(toggle){
-    document.getElementById("btnDelete").disabled = toggle;
+function toggleDeleteButton(){
+    if(document.getElementById('rightDeleteStudentTBody').children.length == 0){
+        document.getElementById("btnDelete").disabled = true;
+    }else{
+        document.getElementById('btnDelete').disabled = false;
+   }
 }
