@@ -92,6 +92,7 @@ $(document).ready(function(){
         removeSelectedItemFromLeftTable();
         addSelectedItemToRightTable();
         deactivateMoveRightButton();
+        toggleDeleteButton(false);
     });
     $("#rightDeleteStudentTBody").on("click", "tr", function(event){
         var target = document.getElementById(jQuery(this).attr("id"));
@@ -104,5 +105,34 @@ $(document).ready(function(){
         removeSelectedItemFromRightTable();
         addSelectedItemToLeftTable();
         deactivateMoveLeftButton();
+        if(document.getElementById('rightDeleteStudentTBody').children.length == 0){
+            toggleDeleteBtn(true);
+        }
+    });
+    $("#btnDelete").click(function(){
+        var url = "http://localhost:8080/students";
+        var unsuccessfully = [];
+        for(i = 0; i < document.getElementById('rightDeleteStudentTBody').children.length; i++){
+            var element = document.getElementById('rightDeleteStudentTBody').children[i];
+            $.ajax({
+                url: url + "/" + document.getElementById('rightDeleteStudentTBody').children[i].children[0].innerHTML,
+                type: "DELETE",
+                contentType: "text/plain",
+                success: function(){
+                    console.log("Löschen erfolgreich für " + element.children[0]);
+                    document.getElementById('rightDeleteStudentTBody').removeChild(element);
+                },
+                error: function(){
+                    console.log("Löschen fehlgeschlagen für " + element.children[0]);
+                    document.getElementById('rightDeleteStudentTBody').removeChild(element);
+                    var newRow = document.getElementById('leftDeleteStudentTBody').insertRow();
+                    for(i = 0; i < 3; i++){
+                        var newCell = newRow.insertCell(i);
+                        newCell.innerHTML = element.children[i].innerHTML;
+                    }
+                },
+            });
+        }
+
     });
 });

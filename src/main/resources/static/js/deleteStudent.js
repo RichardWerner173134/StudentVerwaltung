@@ -46,3 +46,6 @@ function toggleColor(){
     }
     selectedItem.style.backgroundColor = "#F2F2F2";
 }
+function toggleDeleteButton(toggle){
+    document.getElementById("btnDelete").disabled = toggle;
+}

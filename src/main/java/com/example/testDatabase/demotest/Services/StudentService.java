@@ -34,7 +34,7 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public void deleteStudent(String id) {
+    public void deleteStudent(Long id) {
         studentRepository.deleteById(id);
     }
 
@@ -47,7 +47,7 @@ public class StudentService {
         }
     }
 
-    public void deleteCourseFromStudent(String studentId, String courseId) {
+    public void deleteCourseFromStudent(Long studentId, String courseId) {
         Optional<Student> student = studentRepository.findById(studentId);
         if (student.isPresent()) {
             Student studentDTO = student.get();
