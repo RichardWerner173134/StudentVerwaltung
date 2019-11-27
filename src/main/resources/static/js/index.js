@@ -105,6 +105,7 @@ $(document).ready(function(){
         removeSelectedItemFromRightTable();
         addSelectedItemToLeftTable();
         deactivateMoveLeftButton();
+        toggleDeleteButton();
     });
     $("#btnDelete").click(function(){
         var url = "http://localhost:8080/students";
@@ -118,6 +119,7 @@ $(document).ready(function(){
                 success: function(){
                     console.log("Löschen erfolgreich für StudentId" + element.children[0].innerHTML);
                     document.getElementById('rightDeleteStudentTBody').removeChild(element);
+                    toggleDeleteButton();
                 },
                 error: function(){
                     console.log("Löschen fehlgeschlagen für StudentId" + element.children[0].innerHTML);
@@ -128,9 +130,9 @@ $(document).ready(function(){
                         newCell.innerHTML = element.children[j].innerHTML;
                     }
                     newRow.id = "row" + newRow.children[0].innerHTML;
+                    toggleDeleteButton();
                 },
             });
         }
-
     });
 });
