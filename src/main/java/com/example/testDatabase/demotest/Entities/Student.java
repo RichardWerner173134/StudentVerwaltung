@@ -27,6 +27,10 @@ public class Student {
             inverseJoinColumns = @JoinColumn(name = "course_id"))
     private Set<Course> attendedCourses;
 
+    @ManyToOne
+    @JoinColumn(name="address_id")
+    private Address address;
+
     public void addLikedCourses(Course course){
         attendedCourses.add(course);
         course.getAttendees().add(this);
