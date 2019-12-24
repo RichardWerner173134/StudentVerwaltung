@@ -51,7 +51,12 @@ public class StudentController {
     @PostMapping(value="", consumes= MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     private void addStudent(@RequestBody StudentJson studentJson) throws Exception {
-        studentService.addStudent(studentJson.getVorname(), studentJson.getNachname());
+        studentService.addStudent(studentJson.getVorname(),
+                studentJson.getNachname(),
+                studentJson.getCity(),
+                Long.parseLong(studentJson.getPostalCode()),
+                studentJson.getStreet(),
+                Long.parseLong(studentJson.getNumber()));
     }
 
     @GetMapping("/deleteStudentForm")

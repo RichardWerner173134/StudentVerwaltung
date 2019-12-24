@@ -15,14 +15,32 @@
     <nav th:replace="fragments/header :: nav"></nav>
     <section class="section">
         <h1 class="ueberschrift" th:text="'Neuen Studenten hinzufügen'"></h1>
-        <p>
-            Vorname
-            <input type="text" id="vorname"/>
-        </p>
-        <p>
-            Nachname
-            <input type="text" id="nachname"/>
-        </p>
+        <table>
+            <tbody>
+                <tr>
+                    <td th:text="'Vorname'"></td>
+                    <td><input id="vorname" type="text"/></td>
+                </tr>
+                <tr>
+                    <td th:text="'Nachname'"></td>
+                    <td><input id="nachname" type="text"/></td>
+                </tr>
+                <tr>
+                    <td th:text="'Straße'"></td>
+                    <td><input id="street" type="text"/></td>
+                    <td th:text="'Hausnummer'"></td>
+                    <td><input id="number" type="text"/></td>
+                </tr>
+                <tr>
+                    <td th:text="'Stadt/Ort'"></td>
+                    <td><input id="city" type="text"/</td>
+                </tr>
+                <tr>
+                    <td th:text="'Postleitzahl'"></td>
+                    <td><input id="postalCode" type="text"/</td>
+                </tr>
+            </tbody>
+        </table>
         <button class="btn" id="newStudent" th:text="Hinzufügen"></button>
     </section>
     <aside class="sidebar" th:replace="fragments/sidebar :: aside"></aside>

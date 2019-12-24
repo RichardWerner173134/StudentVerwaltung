@@ -20,16 +20,20 @@ public class Student {
 
     private String nachname;
 
+    private String city;
+
+    private Long postalCode;
+
+    private String street;
+
+    private Long number;
+
     @ManyToMany (cascade=CascadeType.ALL)
     @JoinTable(
             name = "student_course_attendance",
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "course_id"))
     private Set<Course> attendedCourses;
-
-    @ManyToOne
-    @JoinColumn(name="address_id")
-    private Address address;
 
     public void addLikedCourses(Course course){
         attendedCourses.add(course);

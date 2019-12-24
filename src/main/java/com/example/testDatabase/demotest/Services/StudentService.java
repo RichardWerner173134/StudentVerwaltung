@@ -23,10 +23,14 @@ public class StudentService {
         return studentRepository.findById(id);
     }
 
-    public void addStudent(String vorname, String nachname){
+    public void addStudent(String vorname, String nachname, String city, Long postalCode, String street, Long number){
         studentRepository.save(Student.builder()
                                 .vorname(vorname)
                                 .nachname(nachname)
+                                .city(city)
+                                .postalCode(postalCode)
+                                .street(street)
+                                .number(number)
                                 .build());
     }
 
