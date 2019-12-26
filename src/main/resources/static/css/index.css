@@ -72,3 +72,6 @@ a{
 #rightTable {
     float: right;
 }
+#btnSaveStudentChanges {
+    visibility: hidden;
+}

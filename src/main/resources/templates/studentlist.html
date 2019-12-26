@@ -14,7 +14,7 @@
     <header th:replace="fragments/header :: header"></header>
     <nav th:replace="fragments/header :: nav"></nav>
     <section class="section">
-        <h1 class="ueberschrift" th:text="Studentlist"}></h1>
+        <h1 class="ueberschrift" th:text="Studentlist"></h1>
         <div th:if="${header == 'showAllStudents'}" th:text="'Das ist die Liste aller Studenten!'"></div>
         <div th:if="${header == 'showCourseMembers'}" th:text="'Das ist die Liste der Studenten des Kurses ' + ${course.name}"></div>
         <form th:if="${header == 'showAllStudents'}" method="get" action="/students/addStudentForm">

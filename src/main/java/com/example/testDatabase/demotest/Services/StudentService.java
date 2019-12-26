@@ -34,6 +34,19 @@ public class StudentService {
                                 .build());
     }
 
+    public void updateStudentAttributes(Long studentId, Student student){
+        Optional<Student> studentDTO = studentRepository.findById(studentId);
+        if(studentDTO.isPresent()){
+            studentDTO.get().setCity(student.getCity());
+            studentDTO.get().setNachname(student.getNachname());
+            studentDTO.get().setVorname(student.getVorname());
+            studentDTO.get().setStreet(student.getStreet());
+            studentDTO.get().setNumber(student.getNumber());
+            studentDTO.get().setPostalCode(student.getPostalCode());
+            studentRepository.save(studentDTO.get());
+        }
+    }
+
     public List<Student> getAllStudents() {
         return studentRepository.findAll();
     }

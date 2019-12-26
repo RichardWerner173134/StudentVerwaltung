@@ -24,6 +24,9 @@
         <form th:if="${header == 'showCoursesForStudent'}" th:type="get" th:action="'http://localhost:8080/students/' + ${student.id} + '/courses/addCourseForStudent'">
             <button class="btn" id="btnAddCourseForStudent" type="submit">für Kurs anmelden</button>
         </form>
+        <form th:if="${header == 'showCoursesForStudent'}" th:type="get" th:action="'http://localhost:8080/students/' + ${student.id} + '/showStudentAttributes'">
+            <button class="btn" id="btnShowStudentAttributes" type="submit" th:text="'Bearbeiten'"></button>
+        </form>
         <table class="table">
             <thead>
                 <tr>

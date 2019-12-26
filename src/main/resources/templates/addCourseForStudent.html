@@ -17,7 +17,7 @@
         <h1 id="h1" th:text="'Kursneuanmeldung für ' + ${student.vorname} + ' ' + ${student.nachname} + ', id=' + ${student.id}"></h1>
         <div th:id="courseselector">
             <select id="selectedCourse">
-                <option value="" selected disabled hidden>Fach auswählen</option>
+                <option value="" selected disabled hidden>Kurs auswählen</option>
                 <option th:each="course:${courses}" th:value="${course.name} + ', id=' + ${course.id}" th:text="${course.name}"></option>
             </select>
         </div>

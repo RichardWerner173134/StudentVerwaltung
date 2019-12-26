@@ -13,7 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,16 +35,15 @@ public class StudentController {
         return "studentlist";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}/showStudentAttributes")
     private String getStudent(@PathVariable String id, Model model) throws Exception {
         Optional<Student> student = studentService.getStudent(Long.parseLong(id));
         if(student.isPresent()){
-            model.addAttribute("header", "showAllStudents");
-            model.addAttribute("students", Arrays.asList(student.get()));
+            model.addAttribute("student", student.get());
         }else{
             throw new Exception("Student with id=" + id + " not found");
         }
-        return "studentlist";
+        return "showStudentAttributes";
     }
 
     @PostMapping(value="", consumes= MediaType.APPLICATION_JSON_VALUE)
@@ -67,8 +65,14 @@ public class StudentController {
 
     @PutMapping(value="/{studentId}/courses/{courseId}", consumes= MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    private void updateStudent(@RequestBody CourseForStudentJson courseForStudentJson){
+    private void addCourseToStudent(@RequestBody CourseForStudentJson courseForStudentJson){
         studentService.addCourseToStudent(Long.parseLong(courseForStudentJson.getStudentId()), Long.parseLong(courseForStudentJson.getCourseId()));
+    }
+
+    @PutMapping(value="/{studentId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    private void updateStudentProperties(@PathVariable String studentId, @RequestBody Student student){
+        studentService.updateStudentAttributes(Long.parseLong(studentId), student);
     }
 
     @DeleteMapping("/{studentId}/courses/{courseId}")
@@ -111,5 +115,4 @@ public class StudentController {
         }
         studentService.deleteStudent(Long.parseLong(studentId));
     }
-
 }

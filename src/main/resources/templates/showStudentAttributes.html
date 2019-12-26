@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Studentlist</title>
+    <link rel="stylesheet"
+          th:href="@{/css/index.css}"
+          type="text/css"
+          media="screen">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/index.js}"></script>
+</head>
+<body>
+    <header th:replace="fragments/header :: header"></header>
+    <nav th:replace="fragments/header :: nav"></nav>
+    <section class="section">
+        <h1 class="ueberschrift" th:text="${student.vorname} + ' ' + ${student.nachname}"></h1>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td th:text="Id"></td>
+                    <td><input id="inputId" type="text" th:value="${student.id}" disabled/></td>
+                </tr>
+                <tr>
+                    <td th:text="Nachname"></td>
+                    <td><input id="inputNachname" type="text" th:value="${student.nachname}" disabled/></td>
+                </tr>
+                <tr>
+                    <td th:text="Vorname"></td>
+                    <td><input id="inputVorname" type="text" th:value="${student.vorname}" disabled/></td>
+                </tr>
+                <tr>
+                    <td th:text="Kurse"></td>
+                    <td><input type="text" th:value="${#lists.size(student.attendedCourses)}" disabled/></td>
+                </tr>
+                <tr></tr>
+                <tr>
+                    <td th:text="Wohnort"></td>
+                    <td><input id="inputCity" type="text" th:value="${student.city}" disabled/></td>
+                </tr>
+                <tr>
+                    <td th:text="PLZ"></td>
+                    <td><input id="inputPLZ" type="text" th:value="${student.postalCode}" disabled/></td>
+                </tr>
+                <tr>
+                    <td th:text="Straße"></td>
+                    <td><input id="inputStreet" type="text" th:value="${student.street}" disabled/></td>
+                </tr>
+                <tr>
+                    <td th:text="Hausnummer"></td>
+                    <td><input id="inputNumber" type="text" th:value="${student.number}" disabled/></td>
+                </tr>
+            </tbody>
+        </table>
+        <button id="btnEditStudent">Bearbeiten</button>
+        <button id="btnSaveStudentChanges" disabled>Speichern</button>
+    </section>
+    <aside class="sidebar" th:replace="fragments/sidebar :: aside"></aside>
+</body>
+</html>

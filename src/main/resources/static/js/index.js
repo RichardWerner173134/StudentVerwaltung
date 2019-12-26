@@ -141,4 +141,37 @@ $(document).ready(function(){
             });
         }
     });
+    $("#btnEditStudent").click(function(){
+        document.getElementById("inputNachname").disabled = false;
+        document.getElementById("inputVorname").disabled = false;
+        document.getElementById("inputCity").disabled = false;
+        document.getElementById("inputStreet").disabled = false;
+        document.getElementById("inputPLZ").disabled = false;
+        document.getElementById("inputNumber").disabled = false;
+        document.getElementById("btnEditStudent").disabled = true;
+        document.getElementById("btnEditStudent").style.visibility = "hidden";
+        document.getElementById("btnSaveStudentChanges").disabled = false;
+        document.getElementById("btnSaveStudentChanges").style.visibility = "visible";
+    });
+    $("#btnSaveStudentChanges").click(function(){
+        var data = {
+            id: document.getElementById("inputId").value,
+            vorname: document.getElementById("inputVorname").value,
+            nachname: document.getElementById("inputNachname").value,
+            city: document.getElementById("inputCity").value,
+            postalCode: document.getElementById("inputPLZ").value,
+            street: document.getElementById("inputStreet").value,
+            number: document.getElementById("inputNumber").value
+        }
+        $.ajax({
+            url: "http://localhost:8080/students/" + document.getElementById("inputId").value,
+            type: "PUT",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function(){
+                document.location.href = "http://localhost:8080/students";
+                alert("Änderungen erfolgreich übernommen");
+            }
+        });
+    });
 });
