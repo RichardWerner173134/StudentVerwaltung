@@ -31,6 +31,7 @@ public class CourseController {
         return "courselist";
     }
 
+
     @GetMapping("/{id}")
     private String getCourse(@PathVariable String id, Model model) throws Exception {
         Optional<Course> course = courseService.getCourse(Long.parseLong(id));
